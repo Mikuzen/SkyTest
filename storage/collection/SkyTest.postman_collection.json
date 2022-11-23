@@ -1,0 +1,445 @@
+{
+	"info": {
+		"_postman_id": "0c2a56be-0dcb-4b8f-b93d-28f4044f1ddb",
+		"name": "Sky Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21036434"
+	},
+	"item": [
+		{
+			"name": "Работа с файлами",
+			"item": [
+				{
+					"name": "Просмотр списка файлов пользователя",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost/api/files",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр списка файлов в папке",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/files/8",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"files",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Переименование файла",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Name file",
+									"description": "Новое название файла",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/file/rename/1",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"file",
+								"rename",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Загрузка файлов",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files[]",
+									"description": "Файлы для загрузки",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/files/store/2",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"files",
+								"store",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление файла",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost/api/file/delete/9",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"file",
+								"delete",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Скачивание файла",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost/api/file/download/11",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"file",
+								"download",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Аутентификация",
+			"item": [
+				{
+					"name": "Регистрация пользователя",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Test User",
+									"description": "Никнейм",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "TestUser@mail.com",
+									"description": "Почта",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123123",
+									"description": "Пароль",
+									"type": "text"
+								},
+								{
+									"key": "confirm_password",
+									"value": "123123123",
+									"description": "Подтверждение пароля",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/register",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Аутентификация пользователя",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "TestUser@mail.com",
+									"description": "Почта аккаунта",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123123",
+									"description": "Пароль аккаунта",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/login",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Выход из системы",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost/api/logout",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Работа с папками",
+			"item": [
+				{
+					"name": "Создание папки",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Имя",
+									"description": "Наименование папки",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/folder/create",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"folder",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
