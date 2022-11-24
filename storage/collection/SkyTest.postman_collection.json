@@ -26,9 +26,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/api/files",
+							"raw": "{{uri}}/api/files",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
@@ -71,9 +71,9 @@
 							]
 						},
 						"url": {
-							"raw": "localhost/api/files/8",
+							"raw": "{{uri}}/api/files/8",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
@@ -117,9 +117,9 @@
 							]
 						},
 						"url": {
-							"raw": "localhost/api/file/rename/1",
+							"raw": "{{uri}}/api/file/rename/1",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
@@ -164,9 +164,9 @@
 							]
 						},
 						"url": {
-							"raw": "localhost/api/files/store/2",
+							"raw": "{{uri}}/api/files/store/2",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
@@ -195,9 +195,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/api/file/delete/9",
+							"raw": "{{uri}}/api/file/delete/9",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
@@ -231,9 +231,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/api/file/download/11",
+							"raw": "{{uri}}/api/file/download/11",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
@@ -296,9 +296,9 @@
 							]
 						},
 						"url": {
-							"raw": "localhost/api/register",
+							"raw": "{{uri}}/api/register",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
@@ -342,9 +342,9 @@
 							]
 						},
 						"url": {
-							"raw": "localhost/api/login",
+							"raw": "{{uri}}/api/login",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
@@ -376,9 +376,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost/api/logout",
+							"raw": "{{uri}}/api/logout",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
@@ -426,9 +426,9 @@
 							]
 						},
 						"url": {
-							"raw": "localhost/api/folder/create",
+							"raw": "{{uri}}/api/folder/create",
 							"host": [
-								"localhost"
+								"{{uri}}"
 							],
 							"path": [
 								"api",
