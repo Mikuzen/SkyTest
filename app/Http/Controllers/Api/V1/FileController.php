@@ -59,6 +59,8 @@ class FileController extends Controller
 
     public function store(FileStoreRequest $request, $folder = null)
     {
+        $folder = Folder::where('id',  $folder)->first();
+
         $filesList = [];
         $folders = $this->getFolders(Auth::id());
 
