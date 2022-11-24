@@ -1,66 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Требования перед установкой
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Настроить локальное окружение:
+* Docker 20.10.21 
+* Docker-compose 1.26.0 * git 2.34.1
 
-## About Laravel
+## Установка проекта
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Сгенерировать SSH-ключ
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```shell
+  ssh-keygen
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Просматриваем сгенерированный ключ из файла id_rsa.pub, используя команду cat путь к файлу id_rsa.pub
 
-## Learning Laravel
+```shell
+  cat path
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Появится ssh ключ, выделить его от ssh по = скопировать и добавить его в github. После зайти в папку, в которой будет
+располагаться проект выполнить команду
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```shell
+  git clone git@github.com:Mikuzen/SkyTest.git NameFolder
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+После клонирования проекта, зайти в папку проект и ввести команду
 
-## Laravel Sponsors
+```shell
+    cp .env.example .env
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Скопируется файл .env.example с именем .env. Зайти в этот файл выполнить изменить строки:
 
-### Premium Partners
+```dotenv
+    APP_DEBUG=false
+    
+    DB_DATABASE=Name your database 
+    DB_USERNAME=Your username database
+    DB_PASSWORD=Your password for user database
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+После этого выполняем команду docker-compose
 
-## Contributing
+```shell
+    docker-compose up -d
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Контейнеры запустили, чтобы проверить вводим команду:
 
-## Code of Conduct
+```shell
+    dockert ps
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Заходим в контейнер skytest_app_1
 
-## Security Vulnerabilities
+```shell
+docker exec -it skytest_app_1 bash
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Выполняем команду composer, для загрузки зависимостей:
 
-## License
+```shell
+composer install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Выходим из контейнера введя `exit`
+
+После в консоли вводим команду для создания алиаса sail:
+
+```shell
+  alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
+
+И выполняем команды sail:
+
+```shell
+    sail up -d
+    sail artisan migrate
+```
+
+## Postman коллекция
+
+Коллекция для postman хранится в проекте по следующему пути:
+`storage/collection/SkyTest.postman_collection.json`
+
+Для работы в Postman необходимо создать Environment с данными:
+
+```dotenv
+token - Для подстановке токена при обращении к маршрутам для работы с файлами и папками
+url - адрес для обращения к api (localhost - для локального проекта, для обращения к серверу -  http://89.108.64.184)
+```
+
+Чтобы получить api-token для поля token в env postman обращаться по маршрутам:
+```
+{{url}/api/register - регистрация пользователя
+{{url}/api/login - аутентификация пользователя
+```
